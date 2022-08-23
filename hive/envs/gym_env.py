@@ -58,9 +58,9 @@ class GymEnv(BaseEnv):
         return observation, self._turn
 
     def step(self, action):
-        observation, reward, done, info = self._env.step(action)
+        observation, reward, term, trunc, info = self._env.step(action)
         self._turn = (self._turn + 1) % self._num_players
-        return observation, reward, done, self._turn, info
+        return observation, reward, term, trunc, self._turn, info
 
     def render(self, mode="rgb_array"):
         return self._env.render(mode=mode)
